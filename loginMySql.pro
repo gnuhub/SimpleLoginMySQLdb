@@ -11,13 +11,19 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = loginMySql
 TEMPLATE = app
 
+QT += sql
 
 SOURCES += main.cpp\
-        loing.cpp \
-    registerwindow.cpp
-    QT += sql
+           loing.cpp \
+           registerwindow.cpp\
+    qkeccakhash/qkeccakhash.cpp \
+    qkeccakhash/keccakimpl.cpp
+
+
 HEADERS  += loing.h \
-    registerwindow.h
+            qkeccakhash/qkeccakhash.h \
+            registerwindow.h
+
 
 FORMS    += loing.ui \
     registerwindow.ui

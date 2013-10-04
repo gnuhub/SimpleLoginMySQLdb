@@ -10,8 +10,6 @@ Loing::Loing(QWidget *parent) :
     ui(new Ui::Loing)
 {
     ui->setupUi(this);
-    QString ggm = QKeccakHash("workslikeclasfasfssada", QKeccakHash::hb512).toHexString();
-    qDebug() << ggm;
  QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL", "mainBase");
  qDebug() << db.lastError();
  db.setHostName("192.168.1.95");
@@ -39,7 +37,7 @@ void Loing::on_loginButton_clicked()
 
     QString passCltext = ui->passEdit->text();
     QString userName = ui->userEdit->text();
-   QString md5pass = QString(QCryptographicHash::hash((passCltext.toLatin1()),QCryptographicHash::Sha512).toHex());
+    QString hashedPass = QString(QKeccakHash(passCltext.toLatin1(), QKeccakHash::hb512).toHexString()); 
    if(userName==""){
         QMessageBox::critical(0, "No username provided","You left the username blank");
         return;     }
@@ -65,7 +63,7 @@ void Loing::on_loginButton_clicked()
     }
     query.first();
     QVariant v = query.value(0);
-    if(md5pass==v.toString()){
+    if(hashedPass==v.toString()){
         QMessageBox::information(0,"Login Sucessfull","Login Sucessfull");
         //open window here
 

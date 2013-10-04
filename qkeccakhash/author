@@ -1,0 +1,4 @@
+The work in this folder is not by me, it is distributed under the GPLv3
+All the credit goes to the author of this website http://www.workslikeclockwork.com
+
+I only changed the function toAscii() and replaced it with toLatin1() due to the deprication of toAscii() in qkeccakhash.cpp
